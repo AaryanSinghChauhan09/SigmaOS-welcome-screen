@@ -1,15 +1,44 @@
-# SigmaOS-welcome-screen
+    # SigmaOS-welcome-screen
 
-Part of the SigmaOS multi-repository architecture.
+    First-run welcome screen
 
-## Principles
-- MODULARITY: Single responsibility per repository
-- LOOSE COUPLING: Minimal dependencies between repos
-- INTERFACE SEGREGATION: Clear, focused public APIs
-- DETERMINISTIC TESTING: Comprehensive test coverage
+    Part of the **SigmaOS** sovereign operating-system ecosystem — a multi-repository
+    distribution modelled on Linux Mint and Omarchy Linux. See the parent
+    [`SigmaOS`](https://github.com/AaryanSinghChauhan09/SigmaOS) repository for the
+    full component index.
 
-## License
-SPDX-License-Identifier: GPL-3.0-or-later
+    ## Upstream inspirations
+    - https://github.com/linuxmint/mintwelcome
 
-## Copyright
-Copyright (C) 2026 SigmaOS Project
+    ## Design principles applied
+    - **Declarative Manifests**
+- **Defensive Programming**
+- **Fail-Fast**
+- **Least Astonishment**
+- **KISS**
+- **Deterministic Testing**
+
+    ## Usage
+    Verbs: `steps, links, tour-plan, finish`
+
+    ```
+    $ sigma-welcome steps flow.json
+1. [ ] welcome   Welcome to SigmaOS
+2. [ ] docs      Read the documentation
+$ sigma-welcome steps flow.json --done welcome
+1. [x] welcome   Welcome to SigmaOS
+$ sigma-welcome links links.json
+$ sigma-welcome tour-plan tour.json
+[00:30] desktop  Meet the desktop
+$ sigma-welcome finish --product SigmaOS --version 1.0 --save ~/.config/welcome.json
+
+    ```
+
+    ## Build & test
+    ```
+    make build
+    make test
+    ```
+
+    ## Licence
+    GNU General Public License v3.0 (FOSS).
