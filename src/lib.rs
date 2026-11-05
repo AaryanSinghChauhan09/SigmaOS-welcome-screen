@@ -1,11 +1,33 @@
-//! SigmaOS-welcome-screen — First-run welcome screen and onboarding for SigmaOS
-//!
-//! Part of the SigmaOS multi-repository ecosystem.
-//! See https://github.com/AaryanSinghChauhan09/SigmaOS for details.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum OnboardingStep { #[default] Welcome, ThemeSelection, DriverSetup, Completed }
 
-#![allow(dead_code)]
+#[derive(Debug, Default)]
+pub struct WelcomeWizard {
+    current_step: OnboardingStep,
+}
 
-/// Module entry point for SigmaOS-welcome-screen
-pub fn version() -> &'static str {
-    env!("CARGO_PKG_VERSION")
+impl WelcomeWizard {
+    pub fn new() -> Self { Self { current_step: OnboardingStep::Welcome } }
+    pub fn next_step(&mut self) {
+        self.current_step = match self.current_step {
+            OnboardingStep::Welcome => OnboardingStep::ThemeSelection,
+            OnboardingStep::ThemeSelection => OnboardingStep::DriverSetup,
+            _ => OnboardingStep::Completed,
+        };
+    }
+    pub fn is_completed(&self) -> bool { self.current_step == OnboardingStep::Completed }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_welcome_wizard_progression() {
+        let mut wiz = WelcomeWizard::new();
+        assert!(!wiz.is_completed());
+        wiz.next_step();
+        wiz.next_step();
+        wiz.next_step();
+        assert!(wiz.is_completed());
+    }
 }
