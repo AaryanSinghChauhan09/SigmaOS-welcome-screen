@@ -3,12 +3,12 @@ name = "SigmaOS-welcome-screen"
 tier = 3
 stability = "scaffold"
 language = "rust"
-description = "First-run welcome onboarding screen, initial setup wizard, and desktop quick tour"
+description = "First-run welcome screen"
 upstream = ["https://github.com/linuxmint/mintwelcome"]
 
 [contract]
 provides = ["welcome-screen", "first-run-wizard", "desktop-tour"]
-depends_on = []
+depends_on = ["SigmaOS-system"]
 
 [maturity]
 status = "Scaffold"
